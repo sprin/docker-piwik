@@ -34,7 +34,7 @@ RUN /bin/echo OK > /var/www/healthcheck.html
 # Install uwsgi
 RUN yum install -y \
     uwsgi \
-    uwsgi-router-cache \
+    uwsgi-router-rewrite \
     uwsgi-plugin-php \
     && yum clean all
 
@@ -49,5 +49,5 @@ RUN curl -LO http://builds.piwik.org/piwik.zip  \
     && rm piwik.zip
 
 COPY uwsgi.ini /etc/uwsgi/uwsgi.ini
-COPY config.ini.php /piwik/config/config.ini.php
+COPY config.ini.php /var/www/config/config.ini.php
 
